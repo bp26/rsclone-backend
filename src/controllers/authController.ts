@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import authService from '../services/authService';
-import { StatusCode } from '../types/enums';
-import { handleError } from '../utils/errorHandler';
+import authService from '../services/authService.js';
+import { StatusCode } from '../types/enums.js';
+import { handleError } from '../utils/errorHandler.js';
 
 class AuthController {
   async register(req: Request, res: Response): Promise<void> {

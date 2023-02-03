@@ -1,6 +1,6 @@
 import express from 'express';
-import authController from '../controllers/authController';
-import jwtHandler from '../jwt/jwtHandler';
+import authController from '../controllers/authController.js';
+import jwtHandler from '../jwt/jwtHandler.js';
 
 const authRouter = express.Router();
 

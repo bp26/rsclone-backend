@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import { SECRET_KEY } from '../config';
-import { ResponceMessage, StatusCode } from '../types/enums';
-import { IUser } from '../types/interfaces';
+import { SECRET_KEY } from '../config.js';
+import { ResponceMessage, StatusCode } from '../types/enums.js';
+import { IUser } from '../types/interfaces.js';
 
 class jwtHandler {
   generateToken(user: IUser): string {

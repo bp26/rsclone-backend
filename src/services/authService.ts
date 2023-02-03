@@ -1,9 +1,9 @@
-import jwtHandler from '../jwt/jwtHandler';
-import User from '../models/userModel';
-import CustomError from '../utils/customError';
-import { StatusCode } from '../types/enums';
-import { ResponceMessage } from '../types/enums';
-import { IAuthUser, IUser } from '../types/interfaces';
+import jwtHandler from '../jwt/jwtHandler.js';
+import User from '../models/userModel.js';
+import CustomError from '../utils/customError.js';
+import { StatusCode } from '../types/enums.js';
+import { ResponceMessage } from '../types/enums.js';
+import { IAuthUser, IUser } from '../types/interfaces.js';
 
 class AuthService {
   async register(login: string, password: string): Promise<IUser> {
