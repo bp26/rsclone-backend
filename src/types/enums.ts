@@ -13,4 +13,5 @@ export const enum ResponceMessage {
   USER_DOESNT_EXIST = 'This user is not registered',
   USER_WRONG_PASSWORD = 'This password is incorrect',
   USER_NO_TOKEN = 'No token sent',
+  WRONG_TOKEN = 'Wrong token',
 }

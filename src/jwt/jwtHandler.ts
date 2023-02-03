@@ -6,16 +6,30 @@ import { IUser } from '../types/interfaces';
 
 class jwtHandler {
   generateToken(user: IUser): string {
-    return jwt.sign(user, SECRET_KEY);
+    const { login, password } = user;
+    const payload = {
+      login,
+      password,
+    };
+    return jwt.sign(payload, SECRET_KEY);
   }
 
   checkToken(req: Request, res: Response, next: NextFunction) {
-    const header = req.headers['auth'];
-    if (!header || typeof header === 'string') {
+    const token = req.headers['auth'];
+    if (!token || !(typeof token === 'string')) {
       return res
         .status(+StatusCode.UNAUTHORIZED)
         .send({ message: ResponceMessage.USER_NO_TOKEN });
     }
+    jwt.verify(token, SECRET_KEY, (err, token) => {
+      if (err) {
+        res
+          .status(+StatusCode.UNAUTHORIZED)
+          .send({ message: ResponceMessage.WRONG_TOKEN });
+      } else {
+        next();
+      }
+    });
   }
 }
 
