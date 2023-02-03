@@ -38,6 +38,11 @@ class AuthService {
       token,
     };
   }
+
+  async getUsers(): Promise<IUser[]> {
+    const users = await User.find({});
+    return users;
+  }
 }
 
 export default new AuthService();

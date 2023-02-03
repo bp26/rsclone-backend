@@ -23,6 +23,11 @@ class AuthController {
       handleError(res, error);
     }
   }
+
+  async getUsers(req: Request, res: Response): Promise<void> {
+    const users = await authService.getUsers();
+    res.status(200).send(users);
+  }
 }
 
 export default new AuthController();
