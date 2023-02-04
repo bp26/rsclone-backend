@@ -2,7 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import { DB_URL, PORT } from './config.js';
 import AuthRouter from './routers/authRouter.js';
-import { StatusCode } from './types/enums.js';
+import { StatusCode, ResponceMessage } from './types/enums.js';
 
 export const app = express();
 
@@ -11,7 +11,7 @@ app.use(express.json());
 app.use('/auth', AuthRouter);
 
 app.get('/', (req, res) => {
-  res.status(+StatusCode.OK).send('Welcome!');
+  res.status(+StatusCode.OK).send(ResponceMessage.WELCOME);
 });
 
 try {
