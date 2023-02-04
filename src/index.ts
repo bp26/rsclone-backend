@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import { DB_URL, PORT } from './config.js';
 import AuthRouter from './routers/authRouter.js';
 
-const app = express();
+export const app = express();
 
 app.use(express.json());
 
@@ -17,5 +17,3 @@ try {
 } catch (error) {
   console.log(error);
 }
-
-module.exports = app;

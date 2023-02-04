@@ -1,6 +1,6 @@
 import { Response } from 'express';
-import { StatusCode } from '../types/enums';
-import CustomError from './customError';
+import { StatusCode } from '../types/enums.js';
+import CustomError from './customError.js';
 
 export const handleError = (res: Response, error: unknown): void => {
   if (error instanceof CustomError) {
