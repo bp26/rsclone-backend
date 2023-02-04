@@ -15,13 +15,14 @@ class jwtHandler {
   }
 
   checkToken(req: Request, res: Response, next: NextFunction) {
-    const token = req.headers['auth'];
-    if (!token || !(typeof token === 'string')) {
+    const header = req.headers['Authorization'];
+    if (!header || typeof header !== 'string') {
       return res
         .status(+StatusCode.UNAUTHORIZED)
         .send({ message: ResponceMessage.USER_NO_TOKEN });
     }
-    jwt.verify(token, SECRET_KEY, (err, token) => {
+    const token = header.split(' ')[1];
+    jwt.verify(token, SECRET_KEY, (err) => {
       if (err) {
         res
           .status(+StatusCode.UNAUTHORIZED)
