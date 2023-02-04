@@ -15,7 +15,7 @@ class jwtHandler {
   }
 
   checkToken(req: Request, res: Response, next: NextFunction) {
-    const header = req.headers['Authorization'];
+    const header = req.headers['authorization'];
     if (!header || typeof header !== 'string') {
       return res
         .status(+StatusCode.UNAUTHORIZED)
