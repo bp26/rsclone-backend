@@ -1,4 +1,4 @@
-import { StatusCode } from '../types/enums';
+import { StatusCode } from '../types/enums.js';
 
 class CustomError extends Error {
   status: number;
