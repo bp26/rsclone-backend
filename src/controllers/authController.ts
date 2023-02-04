@@ -18,7 +18,7 @@ class AuthController {
     try {
       const { login, password } = req.body;
       const authUser = await authService.login(login, password);
-      res.status(200).send(authUser);
+      res.status(+StatusCode.OK).send(authUser);
     } catch (error) {
       handleError(res, error);
     }
@@ -26,7 +26,7 @@ class AuthController {
 
   async getUsers(req: Request, res: Response): Promise<void> {
     const users = await authService.getUsers();
-    res.status(200).send(users);
+    res.status(+StatusCode.OK).send(users);
   }
 }
 
