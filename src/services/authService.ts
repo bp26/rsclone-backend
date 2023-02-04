@@ -43,6 +43,10 @@ class AuthService {
     const users = await User.find({});
     return users;
   }
+
+  async deleteUsers(): Promise<void> {
+    await User.deleteMany({});
+  }
 }
 
 export default new AuthService();

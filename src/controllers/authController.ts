@@ -32,6 +32,15 @@ class AuthController {
       handleError(res, error);
     }
   }
+
+  async deleteUsers(req: Request, res: Response): Promise<void> {
+    try {
+      await authService.deleteUsers();
+      res.sendStatus(+StatusCode.OK);
+    } catch (error) {
+      handleError(res, error);
+    }
+  }
 }
 
 export default new AuthController();
