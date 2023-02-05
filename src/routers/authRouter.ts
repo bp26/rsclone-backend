@@ -10,6 +10,6 @@ authRouter.post('/login', authController.login);
 
 authRouter.get('/users', jwtHandler.checkToken, authController.getUsers);
 
-authRouter.delete('/users', jwtHandler.checkToken, authController.getUsers);
+authRouter.delete('/users', jwtHandler.checkToken, authController.deleteUsers);
 
 export default authRouter;
