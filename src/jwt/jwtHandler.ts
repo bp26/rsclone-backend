@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import { SECRET_KEY } from '../config.js';
 import { ResponceMessage, StatusCode } from '../types/enums.js';
 import { IUser } from '../types/interfaces.js';
+import { AUTH_COOKIE } from '../utils/constants.js';
 
 class jwtHandler {
   generateToken(user: IUser): string {
@@ -15,13 +16,12 @@ class jwtHandler {
   }
 
   checkToken(req: Request, res: Response, next: NextFunction) {
-    const header = req.headers['authorization'];
-    if (!header || typeof header !== 'string') {
+    const token = req.cookies[AUTH_COOKIE];
+    if (!token || typeof token !== 'string') {
       return res
         .status(+StatusCode.UNAUTHORIZED)
         .send({ message: ResponceMessage.USER_NO_TOKEN });
     }
-    const token = header.split(' ')[1];
     jwt.verify(token, SECRET_KEY, (err) => {
       if (err) {
         res
