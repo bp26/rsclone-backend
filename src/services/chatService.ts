@@ -7,10 +7,6 @@ class ChatService {
     return messages;
   }
 
-  async deleteMessages(): Promise<void> {
-    await Message.deleteMany({});
-  }
-
   async saveMessage(message: IMessage): Promise<void> {
     await Message.create(message);
   }

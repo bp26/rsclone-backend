@@ -12,15 +12,6 @@ class ChatController {
       handleError(res, error);
     }
   }
-
-  async deleteMessages(req: Request, res: Response): Promise<void> {
-    try {
-      await chatService.deleteMessages();
-      res.sendStatus(+StatusCode.OK);
-    } catch (error) {
-      handleError(res, error);
-    }
-  }
 }
 
 export default new ChatController();
