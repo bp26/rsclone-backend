@@ -4,6 +4,7 @@ import { SECRET_KEY } from '../config.js';
 import { ResponceMessage, StatusCode } from '../types/enums.js';
 import { IUser } from '../types/interfaces.js';
 import { AUTH_TOKEN } from '../utils/constants.js';
+import CustomError from '../utils/customError.js';
 
 class jwtHandler {
   generateToken(user: IUser): string {
@@ -34,12 +35,12 @@ class jwtHandler {
   }
 
   checkToken(token: string): void {
-    if (!token) {
-      throw new Error();
-    }
     jwt.verify(token, SECRET_KEY, (err) => {
       if (err) {
-        throw new Error();
+        throw new CustomError(
+          StatusCode.UNAUTHORIZED,
+          ResponceMessage.WRONG_TOKEN
+        );
       }
     });
   }

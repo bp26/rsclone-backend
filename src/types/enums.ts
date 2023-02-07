@@ -15,4 +15,6 @@ export const enum ResponceMessage {
   USER_WRONG_PASSWORD = 'This password is incorrect',
   USER_NO_TOKEN = 'No token sent',
   WRONG_TOKEN = 'Wrong token',
+  NO_PROPS = 'Required properties not passed',
+  UNAUTHORIZED = 'User not authorized',
 }

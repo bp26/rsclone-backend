@@ -47,7 +47,10 @@ class AuthService {
     jwtHandler.checkToken(token);
     const user = await User.findById(id);
     if (!user) {
-      throw new Error();
+      throw new CustomError(
+        StatusCode.UNAUTHORIZED,
+        ResponceMessage.USER_DOESNT_EXIST
+      );
     }
   }
 }
