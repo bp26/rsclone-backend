@@ -3,6 +3,6 @@ import chatController from '../controllers/chatController.js';
 
 const chatRouter = express.Router();
 
-chatRouter.get('/messages', chatController.getMessages);
+chatRouter.get('/', chatController.getMessages);
 
 export default chatRouter;
