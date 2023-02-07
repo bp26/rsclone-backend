@@ -8,8 +8,12 @@ authRouter.post('/register', authController.register);
 
 authRouter.post('/login', authController.login);
 
-authRouter.get('/users', jwtHandler.checkToken, authController.getUsers);
+authRouter.get('/verify', authController.verifyAuthentication);
 
-authRouter.delete('/users', jwtHandler.checkToken, authController.deleteUsers);
+authRouter.delete(
+  '/logout',
+  jwtHandler.verifyTokenOnRequest,
+  authController.logout
+);
 
 export default authRouter;

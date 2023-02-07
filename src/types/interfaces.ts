@@ -4,7 +4,7 @@ export interface IUser {
 }
 
 export interface IAuthUser {
-  user: IUser;
+  userId: string;
   token: string;
 }
 

@@ -1,15 +1,15 @@
 import { Request, Response } from 'express';
 import authService from '../services/authService.js';
-import { StatusCode } from '../types/enums.js';
-import { AUTH_COOKIE } from '../utils/constants.js';
+import { AUTH_ID, AUTH_TOKEN } from '../utils/constants.js';
 import { handleError } from '../utils/errorHandler.js';
+import { setAuthCookies } from '../utils/cookieHelper.js';
 
 class AuthController {
   async register(req: Request, res: Response): Promise<void> {
     try {
       const { login, password } = req.body;
       const newUser = await authService.register(login, password);
-      res.status(+StatusCode.OK).send(newUser);
+      setAuthCookies(res, newUser.userId, newUser.token);
     } catch (error) {
       handleError(res, error);
     }
@@ -19,29 +19,25 @@ class AuthController {
     try {
       const { login, password } = req.body;
       const authUser = await authService.login(login, password);
-      res.cookie(AUTH_COOKIE, authUser.token);
-      res.status(+StatusCode.OK).send(authUser.user);
+      setAuthCookies(res, authUser.userId, authUser.token);
     } catch (error) {
       handleError(res, error);
     }
   }
 
-  async getUsers(req: Request, res: Response): Promise<void> {
+  async verifyAuthentication(req: Request, res: Response): Promise<void> {
     try {
-      const users = await authService.getUsers();
-      res.status(+StatusCode.OK).send(users);
+      const token = req.cookies[AUTH_TOKEN];
+      const id = req.cookies[AUTH_ID];
+      await authService.verifyAuthentication(token, id);
+      res.send(true);
     } catch (error) {
-      handleError(res, error);
+      res.send(false);
     }
   }
 
-  async deleteUsers(req: Request, res: Response): Promise<void> {
-    try {
-      await authService.deleteUsers();
-      res.sendStatus(+StatusCode.OK);
-    } catch (error) {
-      handleError(res, error);
-    }
+  logout(req: Request, res: Response): void {
+    setAuthCookies(res, '', '');
   }
 }
 
