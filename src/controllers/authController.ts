@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import authService from '../services/authService.js';
 import { AUTH_ID, AUTH_TOKEN } from '../utils/constants.js';
-import { handleError } from '../utils/errorHandler.js';
-import { setAuthCookies } from '../utils/cookieHelper.js';
+import { handleError } from '../utils/handleError.js';
+import { setAuthCookies } from '../utils/setAuthCookies.js';
 import CustomError from '../utils/customError.js';
 import { StatusCode, ResponceMessage } from '../types/enums.js';
 

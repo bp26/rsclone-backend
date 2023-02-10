@@ -1,8 +1,8 @@
-import User from '../models/userModel';
-import { IUser } from '../types/interfaces';
-import CustomError from '../utils/customError';
-import { StatusCode } from '../types/enums';
-import { ResponceMessage } from '../types/enums';
+import User from '../models/userModel.js';
+import { IUser } from '../types/interfaces.js';
+import CustomError from '../utils/customError.js';
+import { StatusCode } from '../types/enums.js';
+import { ResponceMessage } from '../types/enums.js';
 
 class UserService {
   async getUser(id: string): Promise<IUser> {

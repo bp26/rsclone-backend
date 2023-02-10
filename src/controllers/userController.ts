@@ -3,7 +3,7 @@ import userService from '../services/userService.js';
 import { ResponceMessage, StatusCode } from '../types/enums.js';
 import { AUTH_ID } from '../utils/constants.js';
 import CustomError from '../utils/customError.js';
-import { handleError } from '../utils/errorHandler.js';
+import { handleError } from '../utils/handleError.js';
 
 class UserController {
   async getUser(req: Request, res: Response): Promise<void> {

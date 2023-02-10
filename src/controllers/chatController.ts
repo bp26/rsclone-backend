@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import chatService from '../services/chatService.js';
 import { StatusCode } from '../types/enums.js';
-import { handleError } from '../utils/errorHandler.js';
+import { handleError } from '../utils/handleError.js';
 
 class ChatController {
   async getMessages(req: Request, res: Response): Promise<void> {

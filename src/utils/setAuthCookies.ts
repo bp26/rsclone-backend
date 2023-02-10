@@ -1,6 +1,6 @@
 import { Response } from 'express';
-import { AUTH_ID, AUTH_TOKEN, COOKIE_AGE } from './constants';
-import { StatusCode } from '../types/enums';
+import { AUTH_ID, AUTH_TOKEN, COOKIE_AGE } from './constants.js';
+import { StatusCode } from '../types/enums.js';
 
 export const setAuthCookies = (
   res: Response,
