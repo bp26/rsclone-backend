@@ -4,6 +4,4 @@ export const DB_URL =
 export const SECRET_KEY = 'Ab94iu1mPdXZ4WOsXX5x';
 export const corsOptions = {
   origin: '*',
-  credentials: true,
-  optionSuccessStatus: 200,
 };
