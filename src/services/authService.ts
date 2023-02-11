@@ -1,7 +1,7 @@
 import jwtHandler from '../jwt/jwtHandler.js';
 import User from '../models/userModel.js';
 import CustomError from '../utils/customError.js';
-import { StatusCode } from '../types/enums.js';
+import { ErrorType, StatusCode } from '../types/enums.js';
 import { ResponceMessage } from '../types/enums.js';
 import { IAuthUser } from '../types/interfaces.js';
 
@@ -11,6 +11,7 @@ class AuthService {
     if (user) {
       throw new CustomError(
         StatusCode.CONFLICT,
+        ErrorType.LOGIN,
         ResponceMessage.USER_ALREADY_EXISTS
       );
     }
@@ -27,12 +28,14 @@ class AuthService {
     if (!user) {
       throw new CustomError(
         StatusCode.UNAUTHORIZED,
+        ErrorType.LOGIN,
         ResponceMessage.USER_DOESNT_EXIST
       );
     }
     if (password !== user.password) {
       throw new CustomError(
         StatusCode.UNAUTHORIZED,
+        ErrorType.PASSWORD,
         ResponceMessage.USER_WRONG_PASSWORD
       );
     }
@@ -49,6 +52,7 @@ class AuthService {
     if (!user) {
       throw new CustomError(
         StatusCode.UNAUTHORIZED,
+        ErrorType.AUTH,
         ResponceMessage.USER_DOESNT_EXIST
       );
     }

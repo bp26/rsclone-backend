@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { SECRET_KEY } from '../config.js';
-import { ResponceMessage, StatusCode } from '../types/enums.js';
+import { ErrorType, ResponceMessage, StatusCode } from '../types/enums.js';
 import { IUser } from '../types/interfaces.js';
 import { AUTH_TOKEN } from '../utils/constants.js';
 import CustomError from '../utils/customError.js';
@@ -21,13 +21,13 @@ class jwtHandler {
     if (!token || typeof token !== 'string') {
       return res
         .status(+StatusCode.UNAUTHORIZED)
-        .send({ message: ResponceMessage.USER_NO_TOKEN });
+        .send({ type: ErrorType.AUTH, message: ResponceMessage.USER_NO_TOKEN });
     }
     jwt.verify(token, SECRET_KEY, (err) => {
       if (err) {
         res
           .status(+StatusCode.UNAUTHORIZED)
-          .send({ message: ResponceMessage.WRONG_TOKEN });
+          .send({ type: ErrorType.AUTH, message: ResponceMessage.WRONG_TOKEN });
       } else {
         next();
       }
@@ -39,6 +39,7 @@ class jwtHandler {
       if (err) {
         throw new CustomError(
           StatusCode.UNAUTHORIZED,
+          ErrorType.AUTH,
           ResponceMessage.WRONG_TOKEN
         );
       }

@@ -18,3 +18,11 @@ export const enum ResponceMessage {
   NO_PROPS = 'Required properties not passed',
   UNAUTHORIZED = 'User not authorized',
 }
+
+export const enum ErrorType {
+  CLIENT = 'client',
+  SERVER = 'server',
+  LOGIN = 'login',
+  PASSWORD = 'password',
+  AUTH = 'auth',
+}

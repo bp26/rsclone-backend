@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import userService from '../services/userService.js';
-import { ResponceMessage, StatusCode } from '../types/enums.js';
+import { ErrorType, ResponceMessage, StatusCode } from '../types/enums.js';
 import { AUTH_ID } from '../utils/constants.js';
 import CustomError from '../utils/customError.js';
 import { handleError } from '../utils/handleError.js';
@@ -12,6 +12,7 @@ class UserController {
       if (!userId) {
         throw new CustomError(
           StatusCode.UNAUTHORIZED,
+          ErrorType.AUTH,
           ResponceMessage.UNAUTHORIZED
         );
       }
@@ -27,11 +28,16 @@ class UserController {
       const user = req.body;
       const userId = req.cookies[AUTH_ID];
       if (!user) {
-        throw new CustomError(StatusCode.BAD_REQUEST, ResponceMessage.NO_PROPS);
+        throw new CustomError(
+          StatusCode.BAD_REQUEST,
+          ErrorType.CLIENT,
+          ResponceMessage.NO_PROPS
+        );
       }
       if (!userId) {
         throw new CustomError(
           StatusCode.UNAUTHORIZED,
+          ErrorType.AUTH,
           ResponceMessage.UNAUTHORIZED
         );
       }

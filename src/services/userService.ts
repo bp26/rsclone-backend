@@ -1,7 +1,7 @@
 import User from '../models/userModel.js';
 import { IUser } from '../types/interfaces.js';
 import CustomError from '../utils/customError.js';
-import { StatusCode } from '../types/enums.js';
+import { ErrorType, StatusCode } from '../types/enums.js';
 import { ResponceMessage } from '../types/enums.js';
 
 class UserService {
@@ -10,6 +10,7 @@ class UserService {
     if (!user) {
       throw new CustomError(
         StatusCode.UNAUTHORIZED,
+        ErrorType.AUTH,
         ResponceMessage.USER_DOESNT_EXIST
       );
     }
@@ -21,6 +22,7 @@ class UserService {
     if (!updatedUser) {
       throw new CustomError(
         StatusCode.UNAUTHORIZED,
+        ErrorType.AUTH,
         ResponceMessage.USER_DOESNT_EXIST
       );
     }
