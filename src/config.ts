@@ -9,4 +9,5 @@ export const corsOptions = {
   ],
   credentials: true,
   optionSuccessStatus: 200,
+  preflightContinue: true,
 };
