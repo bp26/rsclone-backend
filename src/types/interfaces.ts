@@ -1,6 +1,8 @@
 export interface IUser {
   login: string;
   password: string;
+  coins: number;
+  lessons: string[];
 }
 
 export interface IAuthUser {
