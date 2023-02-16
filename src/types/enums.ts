@@ -26,3 +26,8 @@ export const enum ErrorType {
   PASSWORD = 'password',
   AUTH = 'auth',
 }
+
+export const enum MessageType {
+  CONNECTION = 'CONNECTION',
+  MESSAGE = 'MESSAGE',
+}

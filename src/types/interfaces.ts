@@ -1,3 +1,5 @@
+import { MessageType } from './enums';
+
 export interface IUser {
   login: string;
   password: string;
@@ -11,8 +13,20 @@ export interface IAuthUser {
 }
 
 export interface IMessage {
-  userId: string;
   user: string;
   content: string;
-  time: string;
+}
+
+export interface IMessageData {
+  type: MessageType;
+  data: IMessage;
+}
+
+export interface INotification {
+  user: string;
+}
+
+export interface INotificationData {
+  type: MessageType;
+  data: INotification;
 }
