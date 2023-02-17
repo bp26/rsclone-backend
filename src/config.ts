@@ -5,8 +5,12 @@ export const SECRET_KEY = 'Ab94iu1mPdXZ4WOsXX5x';
 export const corsOptions = {
   origin: [
     'http://localhost:8080',
-    'https://deploy-preview-9--bespoke-profiterole-1402f4.netlify.app',
-    'https://deploy-preview-10--bespoke-profiterole-1402f4.netlify.app',
+    'https://deploy-preview-11--bespoke-profiterole-1402f4.netlify.app',
+    'https://deploy-preview-12--bespoke-profiterole-1402f4.netlify.app',
+    'https://deploy-preview-13--bespoke-profiterole-1402f4.netlify.app',
+    'https://deploy-preview-14--bespoke-profiterole-1402f4.netlify.app',
+    'https://deploy-preview-15--bespoke-profiterole-1402f4.netlify.app',
+    'https://deploy-preview-16--bespoke-profiterole-1402f4.netlify.app',
   ],
   credentials: true,
   optionSuccessStatus: 200,
