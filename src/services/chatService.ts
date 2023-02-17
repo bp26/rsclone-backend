@@ -9,13 +9,10 @@ class ChatService {
   }
 
   async saveMessage(message: Omit<IMessage, 'time'>): Promise<IMessage> {
-    const time = setDate();
-    const { user, content } = message;
-    console.log(time, user, content);
     return await Message.create({
-      user,
-      content,
-      time,
+      user: message.user,
+      content: message.content,
+      time: setDate(),
     });
   }
 }
