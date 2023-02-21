@@ -47,6 +47,34 @@ class UserController {
       handleError(res, error);
     }
   }
+
+  public async uploadAvatar(req: Request, res: Response): Promise<void> {
+    try {
+      const userId = req.cookies[AUTH_ID];
+      const file = req.file;
+
+      if (!userId) {
+        throw new CustomError(
+          StatusCode.UNAUTHORIZED,
+          ErrorType.AUTH,
+          ResponceMessage.UNAUTHORIZED
+        );
+      }
+      if (!file) {
+        throw new CustomError(
+          StatusCode.BAD_REQUEST,
+          ErrorType.CLIENT,
+          ResponceMessage.NO_FILE_UPLOADED
+        );
+      }
+
+      const user = await userService.uploadAvatar(userId, file);
+      res.status(+StatusCode.OK).send(user);
+    } catch (error) {
+      console.log(error);
+      handleError(res, error);
+    }
+  }
 }
 
 export default new UserController();
