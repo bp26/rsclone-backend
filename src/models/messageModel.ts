@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
+import { Schema } from 'mongoose';
 
 const Message = new mongoose.Schema({
-  user: { type: String, required: true },
+  user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   content: { type: String, required: true },
   time: { type: String, required: true },
 });

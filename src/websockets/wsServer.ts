@@ -1,7 +1,7 @@
 import { WebSocketServer } from 'ws';
 import chatService from '../services/chatService.js';
 import server from '../server.js';
-import { IMessageData } from '../types/interfaces.js';
+import { IMessageData, INotificationData } from '../types/interfaces.js';
 import { MessageType } from '../types/enums.js';
 
 class WsServer {
@@ -17,7 +17,13 @@ class WsServer {
           const messageData = JSON.parse(data.toString());
           switch (messageData.type) {
             case MessageType.CONNECTION:
-              this.broadcastMessage(wsServer, messageData);
+              const notification = await chatService.getUserNotification(
+                messageData.data
+              );
+              this.broadcastMessage(wsServer, {
+                type: messageData.type,
+                data: notification,
+              });
               break;
             case MessageType.MESSAGE:
               const savedMessage = await chatService.saveMessage(
@@ -38,7 +44,7 @@ class WsServer {
 
   private broadcastMessage(
     wsServer: WebSocketServer,
-    messageData: IMessageData
+    messageData: IMessageData | INotificationData
   ) {
     wsServer.clients.forEach((client) => {
       client.send(JSON.stringify(messageData));
